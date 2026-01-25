@@ -153,13 +153,6 @@ pub fn ReadFile(emu: &mut emu::Emu) {
         }
     }
 
-    // If overlapped and bytes read is 0 but not EOF, return pending
-    if bytes_read == 0 && !file_handle_ref.is_eof() {
-        emu.last_error = 997; // ERROR_IO_PENDING
-        emu.regs_mut().rax = 0; // FALSE
-        return;
-    }
-
     // Success!
     emu.last_error = 0; // NO_ERROR
     emu.regs_mut().rax = 1; // TRUE

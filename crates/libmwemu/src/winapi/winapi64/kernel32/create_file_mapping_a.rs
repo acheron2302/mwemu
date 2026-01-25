@@ -30,7 +30,7 @@ pub fn CreateFileMappingA(emu: &mut emu::Emu) {
 
     let mapping_handle = MappingHandle::new(name.clone(), file_handle_opt, protect, max_size);
 
-    let handle_key = emu.handle_management.insert_file_handle(mapping_handle);
+    let handle_key = emu.handle_management.insert_mapping_handle(mapping_handle);
 
     emu.regs_mut().rax = handle_key as u64;
 
